@@ -23,14 +23,32 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
-                    <a href="" class="gio-hang d-flex align-center">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span class="" id="gio-hang">0</span>
-                    </a>
-                    <a href="" class="dang-nhap d-flex align-center">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <span>Log in</span>
-                    </a>
+                    <!-- Giỏ hàng - Kiểm tra đăng nhập -->
+                    @if(session('user_id'))
+                        <a href="{{ route('cart.index') }}" class="gio-hang d-flex align-center">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="" id="gio-hang">{{ \Darryldecode\Cart\Facades\CartFacade::getContent()->count() }}</span>
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="gio-hang d-flex align-center">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="" id="gio-hang">0</span>
+                        </a>
+                    @endif
+                    
+                    <!-- Đăng nhập/Đăng xuất -->
+                    @if(session('user_id'))
+                        <div class="dang-nhap d-flex align-center" style="gap: 10px;">
+                            <i class="fa-solid fa-circle-user"></i>
+                            <span>{{ session('user_name') }}</span>
+                            <a href="{{ route('logout') }}" style="margin-left: 10px; color: #dc3545;">Đăng xuất</a>
+                        </div>
+                    @else
+                        <a href="{{ route('login') }}" class="dang-nhap d-flex align-center">
+                            <i class="fa-solid fa-circle-user"></i>
+                            <span>Log in</span>
+                        </a>
+                    @endif
                 </div>
             </nav>
         </div>
