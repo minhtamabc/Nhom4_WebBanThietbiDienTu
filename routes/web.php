@@ -3,11 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\ProductController;
 
 // Trang chủ
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [ProductController::class,'products'])->name('home');
 
 // Authentication routes
 Route::get('/login', function () {
@@ -22,8 +21,6 @@ Route::get('/auth/google', [GoogleAuthController::class, 'redirectToGoogle'])->n
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'handleGoogleCallback'])->name('google.callback');
 Route::get('/logout', [GoogleAuthController::class, 'logout'])->name('logout');
 
-// Product routes - không cần đăng nhập
-Route::get('/products', [CartController::class, 'products'])->name('products');
 
 // Cart routes - CẦN đăng nhập
 Route::middleware(['check.login'])->group(function () {

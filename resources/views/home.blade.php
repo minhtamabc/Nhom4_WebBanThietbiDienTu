@@ -54,14 +54,12 @@
         </div>
         <nav class="danh-sach-loai-san-pham">
             <ul class="d-flex align-center list-menu">
-                <li><a href="">SHOP ALL</a></li>
-                <li><a href="">OPPO</a></li>
-                <li><a href="">TECNO</a></li>
-                <li><a href="">SAMSUNG</a></li>
-                <li><a href="">APPLE</a></li>
-                <li><a href="">XIAOMI</a></li>
-                <li><a href="">TAI NGHE</a></li>
-                <li><a href="">SẠC DỰ PHÒNG</a></li>
+                @if(isset($data["branch"]))
+                    <li><a href="">SHOP ALL</a></li>
+                    @foreach($data["branch"] as $ten_hang)
+                        <li><a href="">{{$ten_hang->ten_hang}}</a></li>
+                    @endforeach
+                @endif
             </ul>
         </nav>
 
@@ -101,23 +99,17 @@
             <div class="wrap-chi-tiet-gioi-thieu">
                 <img src="https://static.wixstatic.com/media/c22c23_e140bfa8cd6f4cb2ac5ee6e204f64073~mv2.jpg" alt="" class="img">
                 <div class="gioi-thieu-text">
-                    <h2>Holidays deals</h2>
-                    <h1>Up to 30% off</h1>
-                    <p>Selected Smartphone Branch</p>
-                    <form action="">
-                        <button class="btnShop i-large">Shop</button>
-                    </form>
+                    <h2>Ngày siêu sale</h2>
+                    <h1>Giảm đến 30%</h1>
+                    <p>Hãy lựa chọn hãng điện thoại yêu thích</p>
                 </div>
             </div>
             <div class="wrap-chi-tiet-gioi-thieu">
                 <img src="https://static.wixstatic.com/media/c837a6_d84a631864a442a496670bc2d787c6a0~mv2.jpg" alt="" class="img">
                 <div class="gioi-thieu-text">
-                    <h2>Just in</h2>
-                    <h1>Take Your Sound Anywhere</h1>
-                    <p>Top Headphone Branch</p>
-                    <form action="">
-                        <button class="btnShop i-large">Shop</button>
-                    </form>
+                    <h2>Duy nhất hôm nay</h2>
+                    <h1>Nghe ở bất cứ đâu</h1>
+                    <p>Top Headphone nổi tiếng</p>
                 </div>
             </div>
         </section>
@@ -130,116 +122,29 @@
 
                 <div class="list-san-pham d-flex flex-no-wrap">
 
-                    <div class="san-pham">
-                        <span class="logo-sale">
-                            BEST SELER
-                        </span>
-                        <div class="wrap-img-san-pham">
-                            <a href="chi-tiet-DT.html">
-                                <img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%">
-                            </a>
-                        </div>
-                        <div class="wrap-thong-tin-san-pham">
-                            <p class="ten-san-pham">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$70.00</span>
-                                </p>
+                @if(isset($data["bestSeller"]))
+                    @foreach($data["bestSeller"] as $sp)
+                        <div class="san-pham">
+                            <span class="logo-sale">
+                                BEST SELER
+                            </span>
+                            <div class="wrap-img-san-pham">
+                                <a href="chi-tiet-DT.html">
+                                    <img src="{{asset('asset/images/'.$sp->src_anh.'.png')}}" alt="sanpham" class="" width="100%">
+                                </a>
+                            </div>
+                            <div class="wrap-thong-tin-san-pham">
+                                <p class="ten-san-pham">{{$sp->ten}}</p>
+                                <div class="display-center justify-space-between">
+                                    <p class="gia">
+                                        <span class="gia-goc"> {{$sp->gia_ban}}</span>
+                                        <span class="gia-sale">$70.00</span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="san-pham">
-                        <span class="logo-sale">
-                            BEST SELER
-                        </span>
-                        <div href="chi-tiet-DT.html" class="wrap-img-san-pham">
-                            <a href="chi-tiet-DT.html"><img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%"></a>
-                        </div>
-                        <div class="wrap-thong-tin-san-pham">
-                            <p class="ten-san-pham">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$70.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="san-pham">
-                        <span class="logo-sale">
-                            BEST SELER
-                        </span>
-                        <div href="chi-tiet-DT.html" class="wrap-img-san-pham">
-                            <a href="chi-tiet-DT.html"><img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%"></a>
-                        </div>
-                        <div class="wrap-thong-tin-san-pham">
-                            <p class="ten-san-pham">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$69.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="san-pham">
-                        <span class="logo-sale">
-                            BEST SELER
-                        </span>
-                        <div href="chi-tiet-DT.html" class="wrap-img-san-pham">
-                            <a href="chi-tiet-DT.html"><img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%"></a>
-                        </div>
-                        <div class="wrap-thong-tin-san-pham">
-                            <p class="ten-san-pham">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$50.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="san-pham">
-                        <span class="logo-sale">
-                            BEST SELER
-                        </span>
-                        <div href="chi-tiet-DT.html" class="wrap-img-san-pham">
-                            <a href="chi-tiet-DT.html"><img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%"></a>
-                        </div>
-                        <div class="wrap-thong-tin-san-pham">
-                            <p class="ten-san-pham">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia">
-                                    <span class="gia-goc"> $199.00</span>
-                                    <span class="gia-sale">$99.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="san-pham">
-                        <span class="logo-sale">
-                            BEST SELER
-                        </span>
-                        <div href="chi-tiet-DT.html" class="wrap-img-san-pham">
-                            <a href="chi-tiet-DT.html"><img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%"></a>
-                        </div>
-                        <div class="wrap-thong-tin-san-pham">
-                            <p class="ten-san-pham">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia">
-                                    <span class="gia-goc"> $150.00</span>
-                                    <span class="gia-sale">$120.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforeach
+                @endif
                 </div>
                
                 <div class="btn-next" id="btn-pre">&#10095;</div>
@@ -263,127 +168,30 @@
                 
                 <div class="list-san-pham-thuong d-flex">
 
-                    <div class="san-pham-thuong border-gray">
-                        <div class="bg-white wrap-1">
-                            <span class="logo-sale">
-                                SALE
-                            </span>
-                            <div class="wrap-img-san-pham">
-                                <img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%">
+                    @if(isset($data["products"]))
+                        @foreach($data["products"] as $product)
+                            <div class="san-pham-thuong border-gray">
+                                <div class="bg-white wrap-1">
+                                    <span class="logo-sale">
+                                        SALE
+                                    </span>
+                                    <div class="wrap-img-san-pham">
+                                        <img src="{{asset('asset/images/'.$product->src_anh.'.png')}}" alt="sanpham" class="" width="100%">
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-mo-ta-sp" style="margin: 20px;">
+                                    <p class="">{{$product->ten}}</p>
+                                    <div class="display-center justify-space-between">
+                                        <p class="gia-mo-ta">
+                                            <span class="gia-goc"> {{$product->gia_ban}}</span>
+                                            <span class="gia-sale">$70.00</span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="bg-mo-ta-sp" style="margin: 20px;">
-                            <p class="">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia-mo-ta">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$70.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="san-pham-thuong border-gray">
-                        <div class="bg-white wrap-1">
-                            <span class="logo-sale">
-                                SALE
-                            </span>
-                            <div class="wrap-img-san-pham">
-                                <img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%">
-                            </div>
-                        </div>
-                        
-                        <div class="bg-mo-ta-sp" style="margin: 20px;">
-                            <p class="">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia-mo-ta">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$70.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="san-pham-thuong border-gray">
-                        <div class="bg-white wrap-1">
-                            <span class="logo-sale">
-                                SALE
-                            </span>
-                            <div class="wrap-img-san-pham">
-                                <img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%">
-                            </div>
-                        </div>
-                        
-                        <div class="bg-mo-ta-sp" style="margin: 20px;">
-                            <p class="">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia-mo-ta">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$70.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="san-pham-thuong border-gray">
-                        <div class="bg-white wrap-1">
-                            <span class="logo-sale">
-                                SALE
-                            </span>
-                            <div class="wrap-img-san-pham">
-                                <img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%">
-                            </div>
-                        </div>
-                        
-                        <div class="bg-mo-ta-sp" style="margin: 20px;">
-                            <p class="">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia-mo-ta">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$70.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="san-pham-thuong border-gray">
-                        <div class="bg-white wrap-1">
-                            <span class="logo-sale">
-                                SALE
-                            </span>
-                            <div class="wrap-img-san-pham">
-                                <img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%">
-                            </div>
-                        </div>
-                        
-                        <div class="bg-mo-ta-sp" style="margin: 20px;">
-                            <p class="">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia-mo-ta">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$70.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="san-pham-thuong border-gray">
-                        <div class="bg-white wrap-1">
-                            <span class="logo-sale">
-                                SALE
-                            </span>
-                            <div class="wrap-img-san-pham">
-                                <img src="./asset/images/san-pham-1.png" alt="sanpham" class="" width="100%">
-                            </div>
-                        </div>
-                        
-                        <div class="bg-mo-ta-sp" style="margin: 20px;">
-                            <p class="">JP - Space Tablet 10.4" Wi-Fi 32GB</p>
-                            <div class="display-center justify-space-between">
-                                <p class="gia-mo-ta">
-                                    <span class="gia-goc"> $85.00</span>
-                                    <span class="gia-sale">$70.00</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </section>

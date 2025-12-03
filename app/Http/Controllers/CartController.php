@@ -82,20 +82,4 @@ class CartController extends Controller
         
         return redirect()->route('cart.index')->with('success', 'Đã xóa toàn bộ giỏ hàng!');
     }
-
-    // Trang danh sách sản phẩm
-    public function products()
-    {
-        $products = DB::table('chitietthietbi')
-            ->join('hang', 'chitietthietbi.id_hang', '=', 'hang.id_hang')
-            ->join('loaisanpham', 'chitietthietbi.id_loai', '=', 'loaisanpham.id_loai_sp')
-            ->select(
-                'chitietthietbi.*',
-                'hang.ten_hang',
-                'loaisanpham.ten_loai_sp'
-            )
-            ->get();
-
-        return view('products', compact('products'));
-    }
 }

@@ -112,9 +112,11 @@
         font-weight: bold;
     }
 
-    .wrap-img-san-pham{
+    .list-san-pham .wrap-img-san-pham{
         padding: 15px;
+        height: 300px;
     }
+
     .gia,.ten-san-pham{
         padding-left:20px;
     }
@@ -128,6 +130,11 @@
         border-radius: 20px;
         margin: 0 0.5rem;
         transition: 1s;
+    }
+
+    .list-san-pham-thuong .wrap-img-san-pham{
+        padding: 15px;
+        height: 350px;
     }
     .san-pham-thuong{
         flex: 0 0 calc(24% - .5rem);
