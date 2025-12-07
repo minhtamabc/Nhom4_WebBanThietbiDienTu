@@ -28,12 +28,14 @@ let percent = 0
 let gap = 0
 
 // dư sản phầm --> không cho animation
-const maxCount = 2
-function dichChuyenSangTrai(){
+let maxCount = 3
+function dichChuyenSangTrai(className){
     if(gap < maxCount){
         percent+=100
         gap+=1
-        let listSP = document.querySelectorAll('.san-pham')
+        let listSP = document.querySelectorAll(`.${className}`)
+        if(listSP)
+            maxCount = listSP.length - 4
 
         for(let i of listSP){
             i.style.transform = `translateX(calc(-${percent}% - ${gap}rem))`
@@ -41,38 +43,44 @@ function dichChuyenSangTrai(){
     }
 }
     
-function dichChuyenSangPhai(){
+function dichChuyenSangPhai(className){
     if(gap <= maxCount && gap !== 0){
         percent-=100
         gap-=1
-        let listSP = document.querySelectorAll('.san-pham')
+        let listSP = document.querySelectorAll(`.${className}`)
+        if(listSP)
+            maxCount = listSP.length - 4
 
         for(let i of listSP){
             i.style.transform = `translateX(calc(-${percent}% - ${gap}rem))`
         }
     }
 }
-function bestSalerAni(index){
-    let listSP = document.querySelectorAll('.san-pham')
 
-    for(let i of listSP){
-        i.style.transform = `translateX(calc(-${percent}% - ${gap}rem))`
+// add event
+if(btnNext && btnPre){
+    btnNext.onclick = (e)=>{
+        dichChuyenSangTrai('san-pham')
     }
-}
-function animation2Giay(index){
-   bestSalerAni(index)
-}
+    btnPre.addEventListener('click',(e)=>{
+       dichChuyenSangPhai('san-pham')
+    })
+} 
 
-// add event 
-btnNext.onclick = (e)=>{
-    dichChuyenSangTrai()
+
+//event trang chi tiet san pham
+
+const btnPre2 = document.querySelector('#btn-pre-2')
+const btnNext2 = document.querySelector('#btn-next-2')
+if(btnNext2 && btnPre2){
+
+    btnNext2.onclick = (e)=>{
+        dichChuyenSangTrai('san-pham-gioi-thieu')
+    }
+    btnPre2.addEventListener('click',(e)=>{
+       dichChuyenSangPhai('san-pham-gioi-thieu')
+    })
 }
-btnPre.addEventListener('click',(e)=>{
-   dichChuyenSangPhai()
-})
-let timerTemp = setInterval(()=>{
-    animation2Giay()
-},2000)
 
 // js trang chi tiet san pham
 const btn = document.querySelector('#product-info')
@@ -91,4 +99,32 @@ function toggleProductInfo(button){
 }
 btn.onclick = (e) => {
     toggleProductInfo(e.target)
+}
+
+// thong bao 
+function thongBaoThemVaoGio(state){
+    let index = state == 1 ? 0 : 1;
+    let wrap = document.querySelector('.thong-bao')
+    let arrIcon = ['check','xmark']
+    let arrClass = ["sucess","error"]
+    let arrText = ['Thêm vào giỏ hàng thành công','Thêm vào giỏ hàng thất bại']
+    let item = document.createElement('div')
+    item.classList.add('notify')
+    item.innerHTML = `<div class="icon ${arrClass[index]}">
+                        <i class="fa-solid fa-${arrIcon[index]}"></i>
+                    </div>
+
+                    <div class="text">
+                        <strong>${arrText[index]}</strong>
+                    </div>`;
+    wrap.appendChild(item);
+    setTimeout(()=>{
+       wrap.removeChild(item)
+    },3000)
+}
+
+// modal
+let btnGio = document.querySelector('#btn-gio')
+btnGio.onclick = (e) => {
+    thongBaoThemVaoGio(true)
 }

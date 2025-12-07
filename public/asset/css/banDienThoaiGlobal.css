@@ -39,6 +39,9 @@ h1,h2{
 p{
     margin: 0;
 }
+.wid-100{
+    width: 100%;
+}
 .d-flex{
     display: flex;
 }
@@ -141,6 +144,13 @@ main{
 .p-0{
     padding: 0;
 }
+
+/* gio hang */
+.bg-green{
+    background-color: green;
+    color: white;
+}
+
 /* button */
 .btn-next{
     margin-left:20px;
@@ -181,4 +191,101 @@ main{
     transition: .5s;
 }
 
+/* table */
+table,td{
+    border-collapse: collapse;
+    border: 1px solid #333;
+}
+tr{
+    display: flex;
+}
+td:first-child{
+    padding-left: 1rem;
+    border:1px solid #333;
+    background-color: white;
+    flex-basis: 40%;
+    font-weight: bold;
+}
+td:nth-child(2){
+    flex: 1;
+}
+td,th{
+    padding: .5rem;
+}
+
 /* footer */
+footer{
+    padding: 3rem 0;
+}
+
+/* thong bao */
+.thong-bao{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: fixed;
+    right: 20px;
+    top:15%;
+}
+
+@keyframes slideLeft{
+    from{
+        opacity: 0;
+        transform: translateX(80%);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes fadeOut{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+.notify {
+    position: relative;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ecfdf5;
+    border: 1px solid #bbf7d0;
+    padding:16px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    color: #065f46;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    animation: slideLeft linear .4s, fadeOut linear 1.5s 2s forwards;
+}
+
+/* icon */
+.notify .icon {
+    width: 32px;
+    height: 32px;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.sucess{
+    background: #34d399;
+}
+.error{
+    background: rgb(243, 7, 7);
+}
+
+/* text */
+.notify .text{
+    font-size: 14px;
+}
+
+.notify .text strong {
+    font-size: 15px;
+    margin-bottom: 2px;
+}

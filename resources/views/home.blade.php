@@ -15,7 +15,7 @@
     <header>
         <div class="wrap-menu-header">
             <nav class="tim-kiem-dang-nhap-gio-hang d-flex">
-                <span class="logo">TechSTU</span>
+                <span class="logo"><a href="{{route('home')}}">TechSTU</a></span>
                 <div class="dang-nhap-gio-hang d-flex">
                     <div class="tim-kiem flex-1">
                         <input type="text" placeholder="... tim kiem">
@@ -24,13 +24,13 @@
                         </button>
                     </div>
                     <!-- Giỏ hàng - Kiểm tra đăng nhập -->
-                    @if(session('user_id'))
+                    @if(session('user_id') && $data["donHang"] != '0')
                         <a href="{{ route('cart.index') }}" class="gio-hang d-flex align-center">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="" id="gio-hang">{{ \Darryldecode\Cart\Facades\CartFacade::getContent()->count() }}</span>
+                            <i class="fa-solid fa-cart-shopping" style="color:green;"></i>
+                            <span class="bg-green" style="background-color:green;color:white;" id="gio-hang">{{ $data["donHang"] }}</span>
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="gio-hang d-flex align-center">
+                        <a href="{{ route('cart.index') }}" class="gio-hang d-flex align-center">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="" id="gio-hang">0</span>
                         </a>
@@ -129,16 +129,16 @@
                                 BEST SELER
                             </span>
                             <div class="wrap-img-san-pham">
-                                <a href="chi-tiet-DT.html">
-                                    <img src="{{asset('asset/images/'.$sp->src_anh.'.png')}}" alt="sanpham" class="" width="100%">
+                                <a href="{{ route('product.detail',$sp->id_chi_tiet_thiet_bi) }}">
+                                    <img src="{{asset('asset/images/'.$sp->src_anh)}}" alt="sanpham" class="" width="100%">
                                 </a>
                             </div>
                             <div class="wrap-thong-tin-san-pham">
                                 <p class="ten-san-pham">{{$sp->ten}}</p>
                                 <div class="display-center justify-space-between">
                                     <p class="gia">
-                                        <span class="gia-goc"> {{$sp->gia_ban}}</span>
-                                        <span class="gia-sale">$70.00</span>
+                                    <span class=""> <strong>{{number_format($sp->gia_ban*1000,0,',','.')}}₫</strong></span>
+                                        <!-- <span class="gia-sale">$70.00</span> -->
                                     </p>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                     <h1 style="margin: 40px 0;font-size: 3rem;">Danh mục sản phẩm</h1>
                 </div>
                 <div class="d-flex align-center">
-                    <h3 style="margin:20px 2rem 20px 40px;">Sản phẩm: 6</h3>
+                    <h3 style="margin:20px 2rem 20px 40px;">Sản phẩm: {{count($data["products"])}}</h3>
                     <form action="" method="post">
                         <select name="" style="padding: .5rem; border-radius: .5rem;font-size: 1rem;">
                             <option value="dienthoai">Điện thoại</option>
@@ -171,12 +171,15 @@
                     @if(isset($data["products"]))
                         @foreach($data["products"] as $product)
                             <div class="san-pham-thuong border-gray">
-                                <div class="bg-white wrap-1">
+                                <div class="bg-white">
                                     <span class="logo-sale">
                                         SALE
                                     </span>
                                     <div class="wrap-img-san-pham">
-                                        <img src="{{asset('asset/images/'.$product->src_anh.'.png')}}" alt="sanpham" class="" width="100%">
+                                        <a href="{{ route('product.detail',$product->id_chi_tiet_thiet_bi) }}">
+                                            <img src="{{ asset('asset/images/'.$product->src_anh) }}" alt="sanpham" class="" 
+                                            width="100%">
+                                        </a>
                                     </div>
                                 </div>
                                 
@@ -184,9 +187,9 @@
                                     <p class="">{{$product->ten}}</p>
                                     <div class="display-center justify-space-between">
                                         <p class="gia-mo-ta">
-                                            <span class="gia-goc"> {{$product->gia_ban}}</span>
-                                            <span class="gia-sale">$70.00</span>
-                                        </p>
+                                            <span class=""><strong>{{number_format($product->gia_ban*1000,0,',','.')}}₫</strong></span>
+                                            <!-- <span class="gia-sale">$70.00</span>-->
+                                        </p> 
                                     </div>
                                 </div>
                             </div>
@@ -242,6 +245,6 @@
             </div>
         </div>
     </div>
-    <script src="./asset/js/banDT/banDienThoai.js"></script>
+    <script src="asset/js/banDienThoai.js"></script>
 </body>
 </html>

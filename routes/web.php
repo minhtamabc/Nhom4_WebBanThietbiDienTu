@@ -26,9 +26,15 @@ Route::get('/logout', [GoogleAuthController::class, 'logout'])->name('logout');
 Route::middleware(['check.login'])->group(function () {
     Route::prefix('cart')->group(function () {
         Route::get('/', [CartController::class, 'index'])->name('cart.index');
+
         Route::post('/add', [CartController::class, 'add'])->name('cart.add');
-        Route::post('/update/{id}', [CartController::class, 'update'])->name('cart.update');
-        Route::get('/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-        Route::get('/clear', [CartController::class, 'clear'])->name('cart.clear');
+        Route::post('/buyNow', [CartController::class, 'buyNow'])->name('cart.buyNow');
+
+        Route::post('/update/{idProduct}/{idDonHang}', [CartController::class, 'update'])->name('cart.update');
+        Route::get('/remove/{idProduct}/{idDonHang}', [CartController::class, 'remove'])->name('cart.remove');
+        Route::get('/clear/{id}', [CartController::class, 'clear'])->name('cart.clear');
     });
 });
+
+// chi tiet san pham
+Route::get('/product/{idProduct}',[ProductController::class,'productDetail'])->name('product.detail');
