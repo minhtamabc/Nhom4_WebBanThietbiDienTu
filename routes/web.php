@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
+
 
 // Trang chủ
 Route::get('/', [ProductController::class,'products'])->name('home');
@@ -33,8 +35,25 @@ Route::middleware(['check.login'])->group(function () {
         Route::post('/update/{idProduct}/{idDonHang}', [CartController::class, 'update'])->name('cart.update');
         Route::get('/remove/{idProduct}/{idDonHang}', [CartController::class, 'remove'])->name('cart.remove');
         Route::get('/clear/{id}', [CartController::class, 'clear'])->name('cart.clear');
+
     });
 });
 
 // chi tiet san pham
 Route::get('/product/{idProduct}',[ProductController::class,'productDetail'])->name('product.detail');
+
+//admin
+Route::get('/trang-chu/login',[AdminController::class, 'login'])->name('admin.login');
+Route::post('/trang-chu/login',[AdminController::class, 'handleLogin'])->name('admin.handleLogin');
+Route::middleware(['admin.check'])->group(function () {
+    Route::prefix('trang-chu')->group(function () {
+        Route::get('/',[AdminController::class,'index'])->name('admin.home');
+        Route::get('/logout',[AdminController::class, 'logout'])->name('admin.logout');
+
+        //quản lý sản phẩm
+        Route::get('/product-management',[AdminController::class, 'productManagement'])->name('admin.product');
+
+        //quản lý đợn hàng
+        Route::get('/order-management',[AdminController::class, 'orderManagement'])->name('admin.order');
+    });
+});

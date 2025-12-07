@@ -171,7 +171,7 @@
                     @if(isset($data["products"]))
                         @foreach($data["products"] as $product)
                             <div class="san-pham-thuong border-gray">
-                                <div class="bg-white">
+                                <div class="bg-white wrap-1">
                                     <span class="logo-sale">
                                         SALE
                                     </span>
