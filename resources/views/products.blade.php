@@ -51,8 +51,14 @@
             color: white;
         }
         
+        /* Active state cho trang hiện tại */
+        .nav-links a.active {
+            background: #667eea;
+            color: white;
+        }
+        
         .cart-btn {
-            background: #28a745;
+            background: #28a745 !important;
             color: white !important;
             padding: 10px 20px !important;
         }
@@ -186,12 +192,12 @@
     <div class="navbar">
         <h1>📱 Quản lý bán điện thoại</h1>
         <div class="nav-links">
-            <a href="/">Trang chủ</a>
-            <a href="{{ route('products') }}">Sản phẩm</a>
-            <a href="{{ route('cart.index') }}" class="cart-btn">🛒 Giỏ hàng</a>
+            <a href="{{ route('home') }}">Trang chủ</a>
+            <a href="{{ route('products') }}" class="active">Sản phẩm</a>
             @if(session('user_id'))
-                <span>{{ session('user_name') }}</span>
-                <a href="{{ route('logout') }}">Đăng xuất</a>
+                <a href="{{ route('cart.index') }}" >🛒 Giỏ hàng</a>
+                <span style="color: #667eea;">👤 {{ session('user_name') }}</span>
+                <a href="{{ route('logout') }}" style="color: #dc3545;">Đăng xuất</a>
             @else
                 <a href="{{ route('login') }}">Đăng nhập</a>
             @endif
@@ -224,12 +230,18 @@
                 
                 @if($product->so_luong_ton_kho > 0)
                     <span class="stock in-stock">Còn {{ $product->so_luong_ton_kho }} sản phẩm</span>
-                    <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $product->id_chi_tiet_thiet_bi }}">
-                        <input type="number" name="quantity" value="1" min="1" max="{{ $product->so_luong_ton_kho }}" class="quantity-input">
-                        <button type="submit" class="add-btn">Thêm vào giỏ</button>
-                    </form>
+                    @if(session('user_id'))
+                        <form action="{{ route('cart.add') }}" method="POST" class="add-to-cart-form">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $product->id_chi_tiet_thiet_bi }}">
+                            <input type="number" name="quantity" value="1" min="1" max="{{ $product->so_luong_ton_kho }}" class="quantity-input">
+                            <button type="submit" class="add-btn">Thêm vào giỏ</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" style="text-decoration: none;">
+                            <button class="add-btn" type="button">Đăng nhập để mua</button>
+                        </a>
+                    @endif
                 @else
                     <span class="stock out-stock">Hết hàng</span>
                     <button class="add-btn" disabled>Hết hàng</button>

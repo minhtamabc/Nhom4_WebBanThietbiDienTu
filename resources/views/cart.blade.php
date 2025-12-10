@@ -243,7 +243,7 @@
         <h1>📱 Giỏ hàng của bạn</h1>
         <div class="nav-links">
             <a href="/">Trang chủ</a>
-            <a href="{{ route('home') }}">Sản phẩm</a>
+            
             @if(session('user_id'))
                 <span>{{ session('user_name') }}</span>
                 <a href="{{ route('logout') }}">Đăng xuất</a>
@@ -287,7 +287,7 @@
                                     <span class="product-meta">{{ number_format($item->gia_ban, 0, ',','.') }}₫</span>
                                 </div>
                             </td>
-                            <td>{{ number_format($item->price, 0, ',', '.') }}₫</td>
+                            <td>{{ number_format($item->price * $item->quantity, 0, ',', '.') }}₫</td>
                             <td>
                                 <form action="{{ route('cart.update', [$item->id,$item->idDonHang]) }}" method="POST" class="quantity-form">
                                     @csrf

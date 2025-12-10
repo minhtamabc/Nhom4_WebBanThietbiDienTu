@@ -15,6 +15,7 @@ class ProductController extends Controller
         $data = [];
         $products = DB::table('chitietthietbi')
                     ->select('id_chi_tiet_thiet_bi','ten','gia_ban','src_anh')
+                    ->where('trang_thai', 1)
                     ->get();
 
         $branch = DB::table('hang')
@@ -24,6 +25,7 @@ class ProductController extends Controller
         $bestSeller = DB::table('thietbibanchay')
                     ->join('chitietthietbi','thietbibanchay.id_chi_tiet_thiet_bi','chitietthietbi.id_chi_tiet_thiet_bi')
                     ->select('thietbibanchay.id_chi_tiet_thiet_bi','chitietthietbi.ten','chitietthietbi.gia_ban','chitietthietbi.src_anh')
+                    ->where('chitietthietbi.trang_thai', 1)
                     ->get();
 
         $data["products"] = $products;

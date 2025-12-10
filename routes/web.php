@@ -52,7 +52,12 @@ Route::middleware(['admin.check'])->group(function () {
 
         //quản lý sản phẩm
         Route::get('/product-management',[AdminController::class, 'productManagement'])->name('admin.product');
-
+        Route::get('/product/create', [AdminController::class, 'createProduct'])->name('admin.product.create');
+        Route::post('/product/store', [AdminController::class, 'storeProduct'])->name('admin.product.store');
+        Route::get('/product/edit/{id}', [AdminController::class, 'editProduct'])->name('admin.product.edit');
+        Route::post('/product/update/{id}', [AdminController::class, 'updateProduct'])->name('admin.product.update');
+        Route::get('/product/delete/{id}', [AdminController::class, 'deleteProduct'])->name('admin.product.delete');
+        Route::get('/product/toggle-status/{id}', [AdminController::class, 'toggleProductStatus'])->name('admin.product.toggle');
         //quản lý đợn hàng
         Route::get('/order-management',[AdminController::class, 'orderManagement'])->name('admin.order');
     });
