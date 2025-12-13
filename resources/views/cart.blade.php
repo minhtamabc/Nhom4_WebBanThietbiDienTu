@@ -3,238 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('asset/css/cssCart.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Giỏ hàng</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f5f5;
-        }
-        
-        .navbar {
-            background: white;
-            padding: 15px 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .navbar h1 {
-            color: #667eea;
-            font-size: 24px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-        
-        .nav-links a:hover {
-            background: #667eea;
-            color: white;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .alert {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        
-        .clear-btn {
-            background: #dc3545;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
+        .fa-pencil:hover{
+            color:blue;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .clear-btn:hover {
-            background: #c82333;
-        }
-        
-        .cart-table {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th {
-            text-align: left;
-            padding: 15px;
-            border-bottom: 2px solid #ddd;
-            color: #333;
-            font-weight: 600;
-        }
-        
-        td {
-            padding: 20px 15px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .product-info {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
-        .product-name {
-            font-weight: 600;
-            color: #333;
-        }
-        
-        .product-meta {
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .quantity-form {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        
-        .quantity-input {
-            width: 70px;
-            padding: 8px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        
-        .update-btn {
-            padding: 8px 15px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .update-btn:hover {
-            background: #5568d3;
-        }
-        
-        .remove-btn {
-            color: #dc3545;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .remove-btn:hover {
-            color: #c82333;
-        }
-        
-        .cart-summary {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .summary-row:last-child {
-            border-bottom: none;
-            font-size: 24px;
-            font-weight: 700;
-            color: #667eea;
-        }
-        
-        .checkout-btn {
-            width: 100%;
-            padding: 15px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        
-        .checkout-btn:hover {
-            background: #218838;
-        }
-        
-        .empty-cart {
-            text-align: center;
-            padding: 60px 20px;
-            background: white;
-            border-radius: 15px;
-        }
-        
-        .empty-cart-icon {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
-        
-        .continue-shopping {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-        }
-        
-        .continue-shopping:hover {
-            background: #5568d3;
         }
     </style>
 </head>
@@ -242,8 +17,14 @@
     <div class="navbar">
         <h1>📱 Giỏ hàng của bạn</h1>
         <div class="nav-links">
+<<<<<<< HEAD
             <a href="/">Trang chủ</a>
             
+=======
+            <a href="{{ route('home') }}">Trang chủ</a>
+            <a href="{{ route('order.index') }}">Đơn hàng</a>
+            <a href="{{ route('order.history') }}">Lịch sử</a>
+>>>>>>> thanhtoan
             @if(session('user_id'))
                 <span>{{ session('user_name') }}</span>
                 <a href="{{ route('logout') }}">Đăng xuất</a>
@@ -257,6 +38,11 @@
         @if(session('success'))
             <div class="alert alert-success">
                 ✅ {{ session('success') }}
+            </div>
+        @endif
+        @if(session('error'))
+            <div class="alert alert-error">
+                {{ session('error') }}
             </div>
         @endif
 
@@ -283,8 +69,7 @@
                             <td>
                                 <div class="product-info">
                                     <span class="product-name">{{ $item->name }}</span>
-                                    <img class="product-meta"/>
-                                    <span class="product-meta">{{ number_format($item->gia_ban, 0, ',','.') }}₫</span>
+                                    <img class="product-meta" src="{{ asset('asset/images/'.$item->src_anh) }}"/>
                                 </div>
                             </td>
                             <td>{{ number_format($item->price * $item->quantity, 0, ',', '.') }}₫</td>
@@ -297,7 +82,8 @@
                             </td>
                             <td style="font-weight: 600; color: #667eea;">{{ number_format($item->price, 0, ',', '.') }}₫</td>
                             <td>
-                                <a href="{{ route('cart.remove', [$item->id,$item->idDonHang]) }}" class="remove-btn" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này?')">❌ Xóa</a>
+                                <a href="{{ route('cart.remove', [$item->id,$item->idDonHang]) }}" class="remove-btn" onclick="return 
+                                        confirm('Bạn có chắc muốn xóa sản phẩm này?')">❌ Xóa</a>
                             </td>
                         </tr>
                         @endforeach
@@ -305,7 +91,8 @@
                 </table>
             </div>
 
-            <div class="cart-summary">
+            <form class="cart-summary" method="post" action=" {{ route('order.order') }} " id="formOrder">
+                @csrf
                 <div class="summary-row">
                     <span>Tạm tính:</span>
                     <span>{{ number_format($total, 0, ',', '.') }}₫</span>
@@ -318,8 +105,31 @@
                     <span>Tổng cộng:</span>
                     <span>{{ number_format($total, 0, ',', '.') }}₫</span>
                 </div>
-                <button class="checkout-btn" onclick="alert('Chức năng thanh toán đang phát triển!')">💳 Thanh toán</button>
-            </div>
+                <div class="summary-row">
+                    <span>Phương thức thanh toán:</span>
+                   <select style="padding:8px;font-size:16px;border-radius:5px;" name="ptThanhToan" id="ptThanhToan">Phương thức thanh toán
+                        <option value="1">Thanh toán khi nhận hàng</option>
+                        <option value="2">BANKING</option>
+                   </select>
+                </div>
+                <div class="summary-row">
+                    <span>Địa chỉ:</span>
+                    <div>
+                        <input name="diachi" value="{{ $cartItems[0]->dia_chi }}" readonly id="diachi" style="width:400px;padding:3px;border-radius:3px;">
+                        <i class="fa-solid fa-pencil" id="btnAddress"></i>
+                    </div>
+                </div>
+                <div class="summary-row">
+                    <span>Số điện thoại:</span>
+                    <div>
+                        <input name="sdt" value="{{$cartItems[0]->sdt}}" readonly id="sdt" style="width:400px;padding:3px;border-radius:3px;">
+                        <i class="fa-solid fa-pencil" id="btnPhone"></i>
+                    </div>
+                </div>
+                <input type="hidden" value="{{ $total }}" name="amount"/>
+                <input type="hidden" value="{{ $cartItems[0]->idDonHang }}" name="idDonHang"/>
+                <button class="checkout-btn" name="thanhtoan">Đặt hàng</button>
+            </form>
         @else
             <div class="empty-cart">
                 <div class="empty-cart-icon">🛒</div>
@@ -329,5 +139,19 @@
             </div>
         @endif
     </div>
+    <script>
+        let diachi = document.querySelector('#diachi')
+        let sdt = document.querySelector('#sdt')
+        let btnAddress = document.querySelector('#btnAddress')
+        let btnPhone = document.querySelector('#btnPhone')
+        btnAddress.onclick = (e)=>{
+            diachi.removeAttribute('readonly')
+            diachi.focus()
+        }
+        btnPhone.onclick = (e)=>{
+            sdt.removeAttribute('readonly')
+            sdt.focus()
+        }
+    </script>
 </body>
 </html>

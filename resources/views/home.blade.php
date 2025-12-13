@@ -39,7 +39,9 @@
                     <!-- Đăng nhập/Đăng xuất -->
                     @if(session('user_id'))
                         <div class="dang-nhap d-flex align-center" style="gap: 10px;">
-                            <i class="fa-solid fa-circle-user"></i>
+                            <a href=" {{ route('order.index') }} ">
+                                <i class="fa-solid fa-circle-user"></i>
+                            </a>
                             <span>{{ session('user_name') }}</span>
                             <a href="{{ route('logout') }}" style="margin-left: 10px; color: #dc3545;">Đăng xuất</a>
                         </div>
