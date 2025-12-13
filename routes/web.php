@@ -60,7 +60,7 @@ Route::middleware(['admin.check'])->group(function () {
         //quản lý sản phẩm
         Route::get('/product-management',[AdminController::class, 'productManagement'])->name('admin.product');
 
-        //quản lý đợn hàng
+        //quản lý đơn hàng
         Route::get('/order-management/{trangThai?}',[AdminController::class, 'orderManagement'])->name('admin.order');
         Route::get('/order-management/detail/{idDonHang?}',[AdminController::class, 'detail'])->name('admin.detail');
 
