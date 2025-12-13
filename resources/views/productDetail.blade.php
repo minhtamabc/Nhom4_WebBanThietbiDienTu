@@ -122,9 +122,9 @@
                         @csrf
                         <button class="btnShop txt-white bg-purple wid-100" name="btnThemVaoGio" value="{{$sp->id_chi_tiet_thiet_bi}}" id="btn-them">Thêm vào giỏ</button>
                     </form>
-                    <form action="{{ route('cart.buyNow') }}" method="post">
+                    <form action="{{ route('cart.add') }}" method="post">
                         @csrf
-                        <button class="btnShop txt-white bg-black wid-100" name="btnMuaNgay">Mua ngay</button>
+                        <button class="btnShop txt-white bg-black wid-100" name="btnThemVaoGio" value="{{$sp->id_chi_tiet_thiet_bi}}">Mua ngay</button>
                     </form>
 
                     <div style="margin-top: 3rem;">
