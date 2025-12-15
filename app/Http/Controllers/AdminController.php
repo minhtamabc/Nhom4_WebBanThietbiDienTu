@@ -10,7 +10,19 @@ use Illuminate\Support\Str;
 class AdminController extends Controller
 {
     function index(){
-        return view('admin.index');
+        $data = [];
+
+        $choDuyet = DB::table('donhang')
+                    ->select('id_don_hang')
+                    ->where('trang_thai_don_hang','=',1)
+                    ->get();
+        $tongSP = DB::table('chitietthietbi')
+                    ->select('id_chi_tiet_thiet_bi')
+                    ->get();
+        $data["choDuyet"] = count($choDuyet);
+        $data["tongSP"] = count($tongSP);
+
+        return view('admin.index')->with('data',$data);
     }
     function login(){
         return view('admin.login');

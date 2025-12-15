@@ -17,14 +17,9 @@
     <div class="navbar">
         <h1>📱 Giỏ hàng của bạn</h1>
         <div class="nav-links">
-<<<<<<< HEAD
-            <a href="/">Trang chủ</a>
-            
-=======
             <a href="{{ route('home') }}">Trang chủ</a>
             <a href="{{ route('order.index') }}">Đơn hàng</a>
             <a href="{{ route('order.history') }}">Lịch sử</a>
->>>>>>> thanhtoan
             @if(session('user_id'))
                 <span>{{ session('user_name') }}</span>
                 <a href="{{ route('logout') }}">Đăng xuất</a>

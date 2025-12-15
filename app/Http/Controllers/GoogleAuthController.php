@@ -27,7 +27,6 @@ class GoogleAuthController extends Controller
             $user = DB::table('khachhang')
                 ->where('username', $googleUser->email)
                 ->first();
-            echo $googleUser->email;
             if ($user) {
                 // Nếu đã tồn tại, đăng nhập
                 session(['user_id' => $user->id_khach_hang]);

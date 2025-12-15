@@ -17,10 +17,10 @@
                 <span class="logo"><a href="{{route('home')}}">TechSTU</a></span>
                 <div class="dang-nhap-gio-hang d-flex">
                     <div class="tim-kiem flex-1">
-                        <input type="text" placeholder="... tim kiem">
+                        <!-- <input type="text" placeholder="... tim kiem">
                         <button>
                             <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
+                        </button> -->
                     </div>
                     <!-- Giỏ hàng - Kiểm tra đăng nhập -->
                      @if(session('user_id') && $data["donHang"] != '0' && $data["donHang"] != '')

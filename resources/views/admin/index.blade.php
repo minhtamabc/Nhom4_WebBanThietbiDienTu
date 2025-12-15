@@ -38,8 +38,8 @@
 
                 <div class="card">
                     <h2>Thống kê nhanh</h2>
-                    <p>Tổng sản phẩm: </p>
-                    <p>Đơn hàng chờ xác nhận: </p>
+                    <p>Tổng sản phẩm: {{$data["tongSP"]}}</p>
+                    <p>Đơn hàng chờ xác nhận: {{$data["choDuyet"]}}</p>
                 </div>
 
                 <div class="card">
